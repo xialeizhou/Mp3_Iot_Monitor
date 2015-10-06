@@ -1,0 +1,3 @@
+include ':app', ':smart-table-library'
+include ':hellocharts-library'
+project(':smart-table-library').projectDir = new File('table-library')

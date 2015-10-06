@@ -1,0 +1,108 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:2:1-48:12
+	xmlns:android
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:2:11-69
+	package
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:3:5-34
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:5:5-30
+	android:versionCode
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+uses-sdk
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:6:5-44
+MERGED from [Mp3_Iot_Monitor.orig:hellocharts-library:unspecified] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/hellocharts-library/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [Mp3_Iot_Monitor.orig:smart-table-library:unspecified] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/smart-table-library/unspecified/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+MERGED from [de.codecrafters.tableview:tableview:0.9.5] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:6:15-41
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml
+uses-feature#android.hardware.usb.accessory
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:7:19-64
+uses-permission#android.permission.INTERNET
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:8:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:9:22-76
+application
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:11:5-47:19
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+MERGED from [de.codecrafters.tableview:tableview:0.9.5] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/AndroidManifest.xml:11:5-14:19
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
+	android:allowBackup
+		ADDED from [de.codecrafters.tableview:tableview:0.9.5] /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:11:48-80
+	android:icon
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:11:18-47
+activity#com.unimelb.monitor.UartMonitorActivity
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:12:9-30:20
+	android:screenOrientation
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:14:13-49
+	android:label
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:13:13-45
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:12:19-54
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:17:13-20:29
+action#android.intent.action.MAIN
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:19:27-74
+intent-filter#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:22:13-24:29
+action#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:23:17-92
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:23:25-90
+meta-data#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:26:13-29:25
+	android:resource
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:28:17-57
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:27:17-82
+activity#com.unimelb.monitor.PreviewLineChartActivity
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:31:9-34:20
+	android:label
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:33:13-58
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:32:13-53
+activity#com.unimelb.monitor.LineColumnDependencyActivity
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:35:9-38:20
+	android:label
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:37:13-51
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:36:13-57
+activity#com.unimelb.monitor.BubbleChartActivity
+ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:39:9-42:20
+	android:label
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:41:13-50
+	android:name
+		ADDED from /Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/src/main/AndroidManifest.xml:40:13-48

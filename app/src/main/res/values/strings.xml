@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MP3 IoT Monitor</string>
+    <string name="baudRate">Baud rate</string>
+	<string name="DisplayTable" />
+	<string-array name="baud_rate">        
+		<item>300</item>        
+		<item>600</item>        
+		<item>1200</item>        
+		<item>4800</item>        
+		<item>9600</item>        
+		<item>19200</item>        
+		<item>38400</item>        
+		<item>57600</item>
+		<item>115200</item>
+		<item>230400</item>    
+		<item>460800</item>
+		<item>921600</item>
+	</string-array>
+	
+	<string-array name="stop_bits">        
+		<item>1</item>        
+		<item>2</item>        
+	</string-array>
+		
+	<string-array name="data_bits">        
+		<item>7</item>        
+		<item>8</item>        
+	</string-array>
+	
+	<string-array name="parity">        
+		<item>None</item>        
+		<item>Odd</item>
+		<item>Even</item>
+		<item >Mark</item>
+		<item >Space</item>
+	</string-array>
+	
+	<string-array name="flow_control">        
+		<item>None</item>        
+		<item>CTS/RTS</item>
+	</string-array>
+	<string name="title_heatMap">Heat Map</string>
+	<string name="title_realtimeDisplay">Temperature Realtime Curve</string>
+	<string name="title_analysis">Analysis</string>
+	<string name="title_historySearch">History Search</string>
+</resources>
+

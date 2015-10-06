@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    >
+
+
+<!-- Settings -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="91dp"
+	android:layout_marginTop="5dp"
+	android:layout_marginBottom="5dp"
+	android:layout_margin="5dip"
+	android:background="#505050"
+    android:tag="configure block">
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+
+	        <TextView
+	            android:id="@+id/baudRate"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="2"
+	            android:gravity="center|bottom"
+	            android:text="Rate" />
+
+		     <Spinner
+		         android:id="@+id/baudRateValue"
+		         android:layout_width="fill_parent"
+				 android:textSize="5dp"
+		         android:layout_height="fill_parent"
+		         android:layout_marginBottom="5dp"
+		         android:layout_marginLeft="5dp"
+		         android:layout_marginRight="5dp"
+		         android:layout_marginTop="5dp"
+		         android:layout_weight="1"
+		         android:background="#708070"
+		         android:gravity="center_horizontal|center"
+		         android:inputType="none" />
+
+		</LinearLayout>
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+	        <TextView android:text="Stop"
+		    		  android:id="@+id/stopBit"
+		    		  android:layout_height="fill_parent"
+		    		  android:layout_width="fill_parent"
+		    		  android:gravity="center|bottom"
+		    		  android:layout_weight="2"
+		    		  >
+		    </TextView>
+
+		     <Spinner
+		         android:id="@+id/stopBitValue"
+		         android:layout_width="fill_parent"
+		         android:layout_height="fill_parent"
+		         android:layout_marginBottom="5dp"
+		         android:layout_marginLeft="5dp"
+		         android:layout_marginRight="5dp"
+		         android:layout_marginTop="5dp"
+		         android:layout_weight="1"
+		         android:background="#708070"
+		         android:gravity="center_horizontal|center"
+		         android:inputType="none" />
+
+		</LinearLayout>
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+		     <TextView android:text="Data"
+		    		  android:id="@+id/dataBit"
+		    		  android:layout_height="fill_parent"
+		    		  android:layout_width="fill_parent"
+		    		  android:gravity="center|bottom"
+		    		  android:layout_weight="2"
+		    		  >
+		    </TextView>
+
+		    	<Spinner
+		    	    android:id="@+id/dataBitValue"
+		    	    android:layout_width="fill_parent"
+		    	    android:layout_height="fill_parent"
+		    	    android:layout_marginBottom="5dp"
+		    	    android:layout_marginLeft="5dp"
+		    	    android:layout_marginRight="5dp"
+		    	    android:layout_marginTop="5dp"
+		    	    android:layout_weight="1"
+		    	    android:background="#708070"
+		    	    android:gravity="center_horizontal|center"
+		    	    android:inputType="none" />
+
+		</LinearLayout>
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+		    <TextView android:text="Parity"
+		    		  android:id="@+id/parity"
+		    		  android:layout_height="fill_parent"
+		    		  android:layout_width="fill_parent"
+		    		  android:gravity="center|bottom"
+		    		  android:layout_weight="2"
+		    		  >
+		    </TextView>
+
+		    <Spinner
+		        android:id="@+id/parityValue"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_marginBottom="5dp"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp"
+		        android:layout_marginTop="5dp"
+		        android:layout_weight="1"
+		        android:background="#708070"
+		        android:gravity="center_horizontal|center"
+		        android:inputType="none" />
+
+		</LinearLayout>
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+		    <TextView android:text="Flow"
+		    		  android:id="@+id/flowControl"
+		    		  android:layout_height="fill_parent"
+		    		  android:layout_width="fill_parent"
+		    		  android:gravity="center|bottom"
+		    		  android:layout_weight="2"
+		    		  >
+		    </TextView>
+
+		    	 <Spinner android:id="@+id/flowControlValue"
+		    		  android:layout_height="fill_parent"
+		    		  android:layout_width="fill_parent"
+					  android:layout_marginTop="5dp"
+					  android:layout_marginBottom="5dp"
+					  android:layout_marginRight="5dp"
+					  android:layout_marginLeft="5dp"
+		    		  android:gravity="center"
+		    		  android:inputType="none"
+		    		  android:background="#708070"
+		    		  android:layout_weight="1"
+		    		  />
+		</LinearLayout>
+
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    >
+
+		 	<Button android:id="@+id/configButton"
+		 			android:layout_height="fill_parent"
+		 			android:layout_width="match_parent"
+					android:layout_margin="5dp"
+		 			android:gravity="center"
+		 			android:scaleType="centerInside"
+		 			android:background="@drawable/button_pattern"
+		 			android:layout_weight="1"
+					android:textSize="14dip"
+					android:textStyle="italic"
+					android:paddingLeft="1dip"
+					android:paddingRight="1dip"
+					android:paddingTop="1dip"
+					android:paddingBottom="1dip"
+					android:text="Set"
+		 	/>
+    	</LinearLayout>
+
+
+    </LinearLayout>
+
+<!-- Read byte -->
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:layout_marginTop="5dp"
+	android:layout_marginBottom="5dp"
+	android:layout_margin="5dip"
+	android:background="#505050"
+    android:tag="Read block"
+    android:layout_weight="1"
+    >
+
+	  <TextView android:text = "IoT Reader"
+	 			android:textStyle="italic|bold"
+	 			android:gravity="center"
+	 			android:id="@+id/ReadBytes"
+	 			android:layout_height="fill_parent"
+	 			android:layout_width="fill_parent"
+	 			android:layout_weight="6"
+	 			/>
+
+	 	<EditText
+	 	    android:id="@+id/ReadValues"
+	 	    android:layout_width="fill_parent"
+	 	    android:layout_height="fill_parent"
+	 	    android:layout_margin="10dp"
+	 	    android:layout_weight="1"
+			android:textSize = "13dip"
+			android:textStyle="bold"
+	 	    android:background="#708070"
+	 	    android:focusableInTouchMode="false"
+	 	    android:gravity="left|center_vertical" />
+
+	</LinearLayout>
+
+<!-- Write byte -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="84dp"
+        android:layout_margin="5dip"
+		android:background="#505050"
+        android:tag="Write block"
+		android:theme="@style/Base.TextAppearance.AppCompat.Display1">
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:tag="configure block"
+			android:layout_weight="3" >
+
+			<Button
+				android:id="@+id/heatMapButton"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:layout_margin="10dp"
+				android:gravity="center"
+				android:scaleType="centerInside"
+				android:background="@drawable/button_pattern"
+				android:layout_weight="1"
+				android:textSize="15sp"
+				android:text="HeatMap" />
+		</LinearLayout>
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:tag="configure block"
+			android:layout_weight="3"
+			>
+			<Button android:id="@+id/realtimeDspButton"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:layout_margin="10dp"
+				android:gravity="center"
+				android:scaleType="centerInside"
+				android:background="@drawable/button_pattern"
+				android:layout_weight="1"
+				android:textSize="15sp"
+				android:text="Realtime" />
+		</LinearLayout>
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:tag="configure block"
+			android:layout_weight="3"
+			>
+			<Button android:id="@+id/analysisButton"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:layout_margin="10dp"
+				android:gravity="center"
+				android:scaleType="centerInside"
+				android:background="@drawable/button_pattern"
+				android:layout_weight="1"
+				android:textSize="15sp"
+				android:text="Analysis" />
+		</LinearLayout>
+
+		<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:tag="configure block"-->
+            <!--android:layout_weight="3" >-->
+
+            <!--<Button-->
+                <!--android:id="@+id/historyButton"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:gravity="center"-->
+                <!--android:scaleType="centerInside"-->
+                <!--android:background="@drawable/button_pattern"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="HistorySearch"-->
+				<!--android:textSize="15sp"-->
+				<!--/>-->
+
+		<!--</LinearLayout>-->
+
+	</LinearLayout>
+
+</LinearLayout>
