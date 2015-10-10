@@ -14,7 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +25,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.unimelb.data.Record;
+import com.unimelb.data.Temperature;
 import com.unimelb.utils.mp3Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -236,10 +248,40 @@ public class UartMonitorActivity extends Activity {
 				//startActivity(intent);
 				Map<String, String> params = new HashMap<String, String>();
 				params.clear();
-				params.put("stime", mp3Utils.getDateTimeRelCurrTime(-1));
+				params.put("stime", mp3Utils.getDateTimeRelCurrTime(-3));
 				params.put("etime", getCurrTime());
-				List<String> sl = util.doHttpQuery(global_context, URL_GET_ACC, params);
-				Log.d(UartMonitorActivity.ACTIVITY_TAG, sl.toString());
+				RequestQueue queue = Volley.newRequestQueue(global_context);
+				String fixedTempUrl = util.fixQueryUrl(URL_GET_ACC, params);
+				StringRequest tempReq = new StringRequest(Request.Method.POST, fixedTempUrl,
+						new Response.Listener<String>() {
+							@Override
+							public void onResponse(String response) {
+								// Display the first 500 characters of the response string.
+								JSONArray jsonArr = null;
+								List<Record> tlist = new ArrayList<Record>();
+								//Map<String,String> tempData = new HashMap<String, String>();
+								try {
+									jsonArr = new JSONArray(response.toString());
+									for(int i = 0; i < jsonArr.length(); i++) {
+										tlist.add(new Temperature(jsonArr.getString(i).split("#")[0], jsonArr.getString(i).split("#")[1]));
+									}
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+								// sort temperature records list
+								util.sortRecordsByDate(tlist);
+								// show chart
+								Intent intent = new Intent(global_context, PreviewLineChartActivity.class);
+								startActivity(intent);
+							}
+						}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						debugMsg(global_context, "failed to do volley request.");
+					}
+				});
+				// Add the request to the RequestQueue.
+				queue.add(tempReq);
 			}
 		});
 		analysisButton.setOnClickListener(new View.OnClickListener() {
