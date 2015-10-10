@@ -2,8 +2,6 @@ package com.unimelb.utils;
 
 
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -13,23 +11,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.common.base.CharMatcher;
-
-import org.json.JSONObject;
+import com.unimelb.data.Record;
+import com.unimelb.data.RecordComparator;
 
 import java.math.BigInteger;
-import java.net.URI;
-import java.sql.Timestamp;
-import java.text.BreakIterator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by xialeizhou on 9/20/15.
@@ -64,6 +56,11 @@ public class mp3Utils {
         return df.format(new Date());
     }
 
+    /**
+     * get some day's datetime, step is n * day
+     * @param param
+     * @return
+     */
     public static String getDateTimeRelCurrTime(int param) {
         Date date = new Date();
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -81,33 +78,32 @@ public class mp3Utils {
      * @param context
      * @param url
      */
-    public List<String> doHttpQuery(final Context context, String url, Map<String, String> params) {
-        if (queue == null) {
-            queue = Volley.newRequestQueue(context);
-        }
-        final List<String> respList = new ArrayList<String>();
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String fixedUrl = fixQueryUrl(url, params);
-        //fixedUrl = "http://49.213.15.196/mp3-iot-service/serena/temperature20150921031706/20150921031707";
-//        fixedUrl = "http://49.213.15.196/mp3-iot-service/serena/temperature/get/20150921031706/20150921031707";
-        StringRequest stringReq = new StringRequest(Request.Method.POST, fixedUrl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-						//debugMsg(context, "response str:" + response.toString());
-                        respList.add(response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                debugMsg(context, "failed to do volley request.");
-            }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringReq);
-        return respList;
-    }
+//    public String doHttpQuery(final Context context, String url, Map<String, String> params) {
+//        if (queue == null) {
+//            queue = Volley.newRequestQueue(context);
+//        }
+//        RequestQueue queue = Volley.newRequestQueue(context);
+//        String fixedUrl = fixQueryUrl(url, params);
+//        //fixedUrl = "http://49.213.15.196/mp3-iot-service/serena/temperature20150921031706/20150921031707";
+//        fixedUrl = "http://49.213.15.196/mp3-iot-service/serena/temperature/get/20151005092014/20151011063428";
+//        StringRequest stringReq = new StringRequest(Request.Method.POST, fixedUrl,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // Display the first 500 characters of the response string.
+//						//debugMsg(context, "response str:" + response.toString());
+//                        //debugMsg(context, "size-in:"+req.size());
+//                        //return response.toString();
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                debugMsg(context, "failed to do volley request.");
+//            }
+//        });
+//        // Add the request to the RequestQueue.
+//        queue.add(stringReq);
+//    }
 
     /**
      * @param context
@@ -157,7 +153,7 @@ public class mp3Utils {
      * @param params
      * @return
      */
-    protected static String fixQueryUrl(String url, Map<String, String> params) {
+    public static String fixQueryUrl(String url, Map<String, String> params) {
         if (params.size() < 2) return url;
         return url + "/" + params.get("stime") + "/" + params.get("etime");
     }
@@ -167,7 +163,7 @@ public class mp3Utils {
      * @param params
      * @return
      */
-    protected  static String fixUpdateUrl(String url, Map<String, String> params) {
+    public String fixUpdateUrl(String url, Map<String, String> params) {
        if (params.size() < 2) return null;
         return url + "/" + params.get("submit_time") + "/" + params.get("value");
     }
@@ -176,6 +172,14 @@ public class mp3Utils {
         String printable = CharMatcher.INVISIBLE.removeFrom(s);
         String clean = CharMatcher.ASCII.retainFrom(printable).replaceAll("[><=]", "");;
         return clean;
+    }
+
+    /**
+     * sort record list by date.
+     * @param list
+     */
+    public void sortRecordsByDate(List<Record> list) {
+        Collections.sort(list, new RecordComparator());
     }
 
     public static void main(String [] args) {
