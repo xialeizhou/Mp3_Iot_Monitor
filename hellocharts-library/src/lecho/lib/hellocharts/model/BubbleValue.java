@@ -143,7 +143,7 @@ public class BubbleValue {
         return this;
     }
 
-    @Deprecated
+//    @Deprecated
     public char[] getLabel() {
         return label;
     }
@@ -157,7 +157,7 @@ public class BubbleValue {
         return label;
     }
 
-    @Deprecated
+//    @Deprecated
     public BubbleValue setLabel(char[] label) {
         this.label = label;
         return this;

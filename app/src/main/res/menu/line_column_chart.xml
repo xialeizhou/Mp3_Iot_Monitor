@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.unimelb.monitor.LineColumnDependencyActivity" >
+
+    <item
+        android:id="@+id/action_disp_mean"
+        android:title="mean"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_disp_stdDev"
+        android:title="stdDev"
+        app:showAsAction="never"/>
+
+</menu>

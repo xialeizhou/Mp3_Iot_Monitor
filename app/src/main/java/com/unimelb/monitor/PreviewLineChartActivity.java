@@ -1,5 +1,7 @@
 package com.unimelb.monitor;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,8 +13,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.unimelb.data.Record;
+import com.unimelb.data.Temperature;
+import com.unimelb.utils.mp3Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.listener.ViewportChangeListener;
@@ -28,9 +53,12 @@ import lecho.lib.hellocharts.view.PreviewLineChartView;
 public class PreviewLineChartActivity extends FragmentActivity {
 
     PlaceholderFragment fragment;
-
+    public static Context context;
+    private Bundle savedInstanceState;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle bundle) {
+        context = this;
+        this.savedInstanceState = bundle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview_line_chart);
         if (savedInstanceState == null) {
@@ -43,10 +71,11 @@ public class PreviewLineChartActivity extends FragmentActivity {
      * A fragment containing a line chart and preview line chart.
      */
     public static class PlaceholderFragment extends Fragment {
-
         private LineChartView chart;
         private PreviewLineChartView previewChart;
         private LineChartData data;
+        private mp3Utils util;
+
         /**
          * Deep copy of data.
          */
@@ -59,12 +88,13 @@ public class PreviewLineChartActivity extends FragmentActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             setHasOptionsMenu(true);
             View rootView = inflater.inflate(R.layout.fragment_preview_line_chart, container, false);
-
             chart = (LineChartView) rootView.findViewById(R.id.chart);
             previewChart = (PreviewLineChartView) rootView.findViewById(R.id.chart_preview);
-
+            Intent intent = getActivity().getIntent();
+            String records = intent.getStringExtra("records");
             // Generate data for previewed chart and copy of that data for preview chart.
-            generateDefaultData();
+            generateRecordData(records);
+//            generateDefaultData();
 
             chart.setLineChartData(data);
             // Disable zoom/scroll for previewed chart, visible chart ranges depends on preview chart viewport so
@@ -79,6 +109,7 @@ public class PreviewLineChartActivity extends FragmentActivity {
 
             return rootView;
         }
+
 
         // MENU
         @Override
@@ -128,6 +159,40 @@ public class PreviewLineChartActivity extends FragmentActivity {
                 values.add(new PointValue(i, (float) Math.random() * 100f));
             }
 
+            Line line = new Line(values);
+            line.setColor(ChartUtils.COLOR_GREEN);
+            line.setHasPoints(false);// too many values so don't draw points.
+
+            List<Line> lines = new ArrayList<Line>();
+            lines.add(line);
+
+            data = new LineChartData(lines);
+            data.setAxisXBottom(new Axis());
+            data.setAxisYLeft(new Axis().setHasLines(true));
+
+            // prepare preview data, is better to use separate deep copy for preview chart.
+            // Set color to grey to make preview area more visible.
+            previewData = new LineChartData(data);
+            previewData.getLines().get(0).setColor(ChartUtils.DEFAULT_DARKEN_COLOR);
+
+        }
+
+        private void generateRecordData(String jsonStr) {
+            List<PointValue> values = new ArrayList<PointValue>();
+            JSONArray jsonArr = null;
+            Gson gson = new Gson();
+            Map<Float,Float> map = new HashMap<Float,Float>();
+            map= (Map<Float, Float>) gson.fromJson(jsonStr, map.getClass());
+            Set set = map.entrySet();
+            Iterator iterator = set.iterator();
+            int secs = 0;
+            while(iterator.hasNext()) {
+                Map.Entry mentry = (Map.Entry)iterator.next();
+//                float date = Float.parseFloat(String.valueOf(mentry.getKey()));
+                float value  = Float.parseFloat(String.valueOf(mentry.getValue()));
+                values.add(new PointValue(secs, value));
+                secs += 5;
+            }
             Line line = new Line(values);
             line.setColor(ChartUtils.COLOR_GREEN);
             line.setHasPoints(false);// too many values so don't draw points.

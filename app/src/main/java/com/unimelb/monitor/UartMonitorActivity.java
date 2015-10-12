@@ -3,7 +3,6 @@ package com.unimelb.monitor;
 /**
  * Created by xialeizhou on 9/17/15.
  */
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +31,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.unimelb.data.Accelerometer;
 import com.unimelb.data.Record;
-import com.unimelb.data.Temperature;
+import com.unimelb.utils.Statistics;
 import com.unimelb.utils.mp3Utils;
 
 import org.json.JSONArray;
@@ -86,11 +88,7 @@ public class UartMonitorActivity extends Activity {
 	char[] readBufferToChar;
 	int[] actualNumBytes;
 
-	int numBytes;
-	byte count;
 	byte status;
-	byte writeIndex = 0;
-	byte readIndex = 0;
 
 	int baudRate; /* baud rate */
 	byte stopBit; /* 1:1stop bits, 2:2 stop bits */
@@ -110,10 +108,13 @@ public class UartMonitorActivity extends Activity {
 	private final static String URL_PUT_TEMP 	= "http://49.213.15.196/mp3-iot-service/serena/temperature/update";
 	private final static String URL_PUT_ACC 	= "http://49.213.15.196/mp3-iot-service/serena/accelerometer/update";
 
+	private String stime = null;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		stime = getCurrTime();
 		setContentView(R.layout.main);
 		sharePrefSettings = getSharedPreferences("UARTLBPref", 0);
 		//cleanPreference();
@@ -236,20 +237,13 @@ public class UartMonitorActivity extends Activity {
 			// @Override
 			public void onClick(View v) {
 //				readText.setText("readTable!");
-                Intent intent = new Intent(global_context, BubbleChartActivity.class);
-				startActivity(intent);
-			}
-		});
-
-		realtimeDspButton.setOnClickListener(new View.OnClickListener() {
-			// @Override
-			public void onClick(View v) {
-				//Intent intent = new Intent(global_context, PreviewLineChartActivity.class);
-				//startActivity(intent);
+//                Intent intent = new Intent(global_context, BubbleChartActivity.class);
+//				startActivity(intent);
 				Map<String, String> params = new HashMap<String, String>();
 				params.clear();
-				params.put("stime", mp3Utils.getDateTimeRelCurrTime(-3));
-				params.put("etime", getCurrTime());
+				String etime = getCurrTime();
+				params.put("stime", stime);
+				params.put("etime", etime);
 				RequestQueue queue = Volley.newRequestQueue(global_context);
 				String fixedTempUrl = util.fixQueryUrl(URL_GET_ACC, params);
 				StringRequest tempReq = new StringRequest(Request.Method.POST, fixedTempUrl,
@@ -258,20 +252,114 @@ public class UartMonitorActivity extends Activity {
 							public void onResponse(String response) {
 								// Display the first 500 characters of the response string.
 								JSONArray jsonArr = null;
-								List<Record> tlist = new ArrayList<Record>();
 								//Map<String,String> tempData = new HashMap<String, String>();
+								List<Record> tlist = new ArrayList<Record>();
+								try {
+									jsonArr = new JSONArray(response.toString());
+									double[] data = new double[jsonArr.length()];
+									for(int i = 0; i < jsonArr.length(); i++) {
+										String dateStr = jsonArr.getString(i).split("#")[0];
+//										debugMsg(global_context, "dateStr:"+dateStr);
+										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
+										if (Math.abs(value) >= 500.0) {
+											continue;
+										}
+										data[i] = value;
+//										debugMsg(global_context, "date:"+date);
+										tlist.add(new Accelerometer(date, value));
+									}
+									Statistics stat = new Statistics(data);
+									//sort temperature records list
+									util.sortRecordsByDate(tlist);
+									Map<Float,Float> rlist = new HashMap<Float,Float>();
+									float secs = 0;
+									for(Record record: tlist) {
+										rlist.put(secs, record.getValue());
+										secs += 5;
+									}
+									double step;
+									double mean = Double.parseDouble(String.format("%.2f", stat.getMean()));
+									double stdDev = Double.parseDouble(String.format("%.2f", stat.getStdDev()));
+									if (Math.abs(stat.getMean()) < 10) {
+										step = 0.2;
+									} else if (Math.abs(stat.getMean()) < 300) {
+										step = Math.abs((float)(stat.getMean())/20);
+									} else if (Math.abs(stat.getMean()) >= 300) {
+										step = Math.abs((float)stat.getMean() / 30);
+									} else {
+										step = 0.1;
+									}
+
+									String jsonStr = new Gson().toJson(rlist);
+									// show chart
+									Intent intent = new Intent(global_context, BubbleChartActivity.class);
+									intent.putExtra("mean", mean);
+									intent.putExtra("stdDev", stdDev);
+									intent.putExtra("step", step);
+									intent.putExtra("records", jsonStr);
+									startActivity(intent);
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}
+						}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						debugMsg(global_context, "failed to do volley request.");
+					}
+				});
+				// Add the request to the RequestQueue.
+				queue.add(tempReq);
+			}
+		});
+
+		realtimeDspButton.setOnClickListener(new View.OnClickListener() {
+			// @Override
+			public void onClick(View v) {
+				Map<String, String> params = new HashMap<String, String>();
+				params.clear();
+				String etime = getCurrTime();
+				params.put("stime", stime);
+				params.put("etime", etime);
+				RequestQueue queue = Volley.newRequestQueue(global_context);
+				String fixedTempUrl = util.fixQueryUrl(URL_GET_ACC, params);
+				StringRequest tempReq = new StringRequest(Request.Method.POST, fixedTempUrl,
+						new Response.Listener<String>() {
+							@Override
+							public void onResponse(String response) {
+								// Display the first 500 characters of the response string.
+								JSONArray jsonArr = null;
+								//Map<String,String> tempData = new HashMap<String, String>();
+								List<Record> tlist = new ArrayList<Record>();
 								try {
 									jsonArr = new JSONArray(response.toString());
 									for(int i = 0; i < jsonArr.length(); i++) {
-										tlist.add(new Temperature(jsonArr.getString(i).split("#")[0], jsonArr.getString(i).split("#")[1]));
+										String dateStr = jsonArr.getString(i).split("#")[0];
+//										debugMsg(global_context, "dateStr:"+dateStr);
+										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
+										if (Math.abs(value) >= 500.0) {
+											continue;
+										}
+//										debugMsg(global_context, "date:"+date);
+										tlist.add(new Accelerometer(date, value));
 									}
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}
-								// sort temperature records list
+								//sort temperature records list
 								util.sortRecordsByDate(tlist);
+								Map<Float,Float> rlist = new HashMap<Float,Float>();
+								for(Record record: tlist) {
+									rlist.put(record.getDate(), record.getValue());
+								}
+								String jsonStr = new Gson().toJson(rlist);
+//								debugMsg(global_context, "date:"+tlist.get(0).getDate());
+//								debugMsg(global_context, "value:"+tlist.get(0).getValue());
 								// show chart
 								Intent intent = new Intent(global_context, PreviewLineChartActivity.class);
+								intent.putExtra("records", jsonStr);
 								startActivity(intent);
 							}
 						}, new Response.ErrorListener() {
@@ -288,19 +376,67 @@ public class UartMonitorActivity extends Activity {
 			// @Override
 			public void onClick(View v) {
 //				readText.setText("readTable!");
-				Intent intent = new Intent(global_context, LineColumnDependencyActivity.class);
-				startActivity(intent);
+				Map<String, String> params = new HashMap<String, String>();
+				params.clear();
+				String etime = getCurrTime();
+				params.put("stime", stime);
+				params.put("etime", etime);
+				RequestQueue queue = Volley.newRequestQueue(global_context);
+				String fixedTempUrl = util.fixQueryUrl(URL_GET_ACC, params);
+				StringRequest tempReq = new StringRequest(Request.Method.POST, fixedTempUrl,
+						new Response.Listener<String>() {
+							@Override
+							public void onResponse(String response) {
+								// Display the first 500 characters of the response string.
+								JSONArray jsonArr = null;
+								//Map<String,String> tempData = new HashMap<String, String>();
+								List<Record> tlist = new ArrayList<Record>();
+								try {
+									jsonArr = new JSONArray(response.toString());
+									for(int i = 0; i < jsonArr.length(); i++) {
+										String dateStr = jsonArr.getString(i).split("#")[0];
+//										debugMsg(global_context, "dateStr:"+dateStr);
+										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
+										if (Math.abs(value) >= 500.0) {
+											continue;
+										}
+//										debugMsg(global_context, "date:"+date);
+										tlist.add(new Accelerometer(date, value));
+									}
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+								//sort temperature records list
+								util.sortRecordsByDate(tlist);
+								Map<Float,Float> rlist = new HashMap<Float,Float>();
+								int secsBound = 60 * 60 * 2; // peroid = 5mins, bound = 2hours
+								int secs = 0;
+								for(Record record: tlist) {
+									if (secs > secsBound) break;
+									rlist.put(record.getDate(), record.getValue());
+									secs += 5;
+								}
+								String jsonStr = new Gson().toJson(rlist);
+//								debugMsg(global_context, "date:"+tlist.get(0).getDate());
+//								debugMsg(global_context, "value:"+tlist.get(0).getValue());
+								// show chart
+								Intent intent = new Intent(global_context, LineColumnDependencyActivity.class);
+								intent.putExtra("records", jsonStr);
+								startActivity(intent);
+							}
+						}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						debugMsg(global_context, "failed to do volley request.");
+					}
+				});
+				// Add the request to the RequestQueue.
+				queue.add(tempReq);
+//				Intent intent = new Intent(global_context, LineColumnDependencyActivity.class);
+//				startActivity(intent);
 			}
 		});
-
-//		historyButton.setOnClickListener(new View.OnClickListener() {
-//			// @Override
-//			public void onClick(View v) {
-////				readText.setText("readTable!");
-//				Intent intent = new Intent(global_context, SerenaTableActivity.class);
-//				startActivity(intent);
-//			}
-//		});
 
 		uartInterface = new FT311UARTInterface(this, sharePrefSettings);
 

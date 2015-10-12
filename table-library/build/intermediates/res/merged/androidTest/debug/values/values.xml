@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/table-library/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/Users/xialeizhou/workshop/Mp3_Iot_Monitor/table-library/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <color name="shadow_end">#00000000</color>
     <color name="shadow_start">#80000000</color>

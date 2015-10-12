@@ -25,10 +25,11 @@ dependencies {
     compile 'mysql:mysql-connector-java:5.1.36'
     compile project(':hellocharts-library')
     compile project(':smart-table-library')
-//    compile 'com.android.support:support-v4:22.0.0'
+    //    compile 'com.android.support:support-v4:22.0.0'
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'de.codecrafters.tableview:tableview:0.9.5'
     compile 'com.google.guava:guava-base:r03'
+    compile 'com.google.code.gson:gson:2.4'
 }

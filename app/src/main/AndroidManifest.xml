@@ -8,8 +8,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name"	>
-        <activity android:name=".UartMonitorActivity"
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:persistent="true" >
+        <activity
+            android:name=".UartMonitorActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <!--android:screenOrientation="landscape">-->
@@ -38,7 +42,7 @@
         </activity>
         <activity
             android:name=".BubbleChartActivity"
-            android:label="@string/title_heatMap" >
+            android:label="@string/title_outliers" >
         </activity>
         <!--<activity-->
             <!--android:name=".SerenaTableActivity"-->

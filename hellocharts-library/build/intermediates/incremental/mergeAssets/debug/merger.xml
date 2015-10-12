@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/hellocharts-library/assets"/></dataSet><dataSet config="debug"><source path="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/hellocharts-library/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/hellocharts-library/assets"/></dataSet><dataSet config="debug"><source path="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/hellocharts-library/src/debug/assets"/></dataSet></merger>

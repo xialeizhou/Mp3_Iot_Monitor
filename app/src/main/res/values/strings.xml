@@ -40,8 +40,8 @@
 		<item>None</item>        
 		<item>CTS/RTS</item>
 	</string-array>
-	<string name="title_heatMap">Heat Map</string>
-	<string name="title_realtimeDisplay">Temperature Realtime Curve</string>
+	<string name="title_outliers">Outliers Scatter</string>
+	<string name="title_realtimeDisplay">Realtime Curve</string>
 	<string name="title_analysis">Analysis</string>
 	<string name="title_historySearch">History Search</string>
 </resources>

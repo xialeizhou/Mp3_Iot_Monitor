@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mp3_Iot_Monitor.orig.iml" filepath="$PROJECT_DIR$/Mp3_Iot_Monitor.orig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mp3_Iot_Monitor.iml" filepath="$PROJECT_DIR$/Mp3_Iot_Monitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hellocharts-library/hellocharts-library.iml" filepath="$PROJECT_DIR$/hellocharts-library/hellocharts-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/table-library/smart-table-library.iml" filepath="$PROJECT_DIR$/table-library/smart-table-library.iml" />

@@ -6,6 +6,6 @@ import java.util.Comparator;
  * Created by xialeizhou on 10/10/15.
  */
 public interface Record {
-    public abstract String getDate();
-    public abstract String getValue();
+    public abstract float getDate();
+    public abstract float getValue();
 }

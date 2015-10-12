@@ -43,10 +43,12 @@ public class LineColumnDependencyActivity extends FragmentActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-        public final static String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                "Sep", "Oct", "Nov", "Dec",};
+//        public final static String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+//                "Sep", "Oct", "Nov", "Dec",};
+        public final static String[] months = new String[]{"1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h",
+                "9h", "10h", "11h", "12h"};
 
-        public final static String[] days = new String[]{"Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun",};
+        public final static String[] days = new String[]{"0m", "10m", "20m", "30m", "40m", "50m", "60m"};
 
         private LineChartView chartTop;
         private ColumnChartView chartBottom;

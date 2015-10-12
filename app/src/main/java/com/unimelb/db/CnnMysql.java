@@ -168,18 +168,6 @@ public class  CnnMysql{
     }
 
     public static void main(String[] args) throws SQLException, InterruptedException {
-        CnnMysql cnnMysql = new CnnMysql();
-        BigInteger stime = string2bigint("20150920000000");
-        BigInteger etime = string2bigint("20150921230000");
-//        cnnMysql.writeTemperature(string2bigint("201509211908"), 54);
-//        System.out.println(getCurrTime());
-        cnnMysql.writeTemperature(string2bigint(getCurrTime()), 58);
-        for (int i = 0; i < 300; i++) {
-            cnnMysql.writeTemperature(string2bigint(getCurrTime()), 59);
-            sleep(1000); // for debug
-        }
-        cnnMysql.readTemperature(stime, etime);
-        cnnMysql.close();
     }//end main
 
 }//end
