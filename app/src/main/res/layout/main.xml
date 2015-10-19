@@ -295,7 +295,7 @@
 				android:background="@drawable/button_pattern"
 				android:layout_weight="1"
 				android:textSize="15sp"
-				android:text="Analysis" />
+				android:text="History" />
 		</LinearLayout>
 
 		<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

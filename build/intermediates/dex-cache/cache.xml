@@ -2,55 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-annotations/r03/4898719420a0e946ad0772c5c2c61111999c78c2/guava-annotations-r03.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4898719420a0e946ad0772c5c2c61111999c78c2">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/guava-annotations-r03-dee5b649a3635a7c5fd80a8e7df3bb2a43672378.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-base/r03/251db72895ba5745e6810334075095832f12f437/guava-base-r03.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="251db72895ba5745e6810334075095832f12f437">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/guava-base-r03-8a8756b1800e7d061131fd57ba30d336afcd3986.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.36/6bb5861f44c21c775ee713a438e5bc493c095f7a/mysql-connector-java-5.1.36.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6bb5861f44c21c775ee713a438e5bc493c095f7a">
-        <dex dex="/Users/xialeizhou/workshop/UARTLoopback/app/build/intermediates/pre-dexed/release/mysql-connector-java-5.1.36-0e38a25fa9cf09c0c27cb37731298b3074dec7f0.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4f687e40284c98e19312d2b183a46aa23b112d69">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-1d7d75b319c876521384909d50950907b83712c4.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-1ef4538b0d82197f65d23f670ea2c62587e432bc.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-fc9170a3bc7d2dcd6fbfcc66e08f175337c27876.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/hellocharts-library/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e056d83a20b7a0916bb1e50f9f30e0cc3d45a033">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-50680d760a7b2662d129290f201eec19cc3d3478.jar" />
-    </item>
-    <item
         jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -58,39 +9,11 @@
         <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-a00742667241e249c21900500f5c6b07d403d3e7.jar" />
     </item>
     <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor/smart-table-library/unspecified/jars/classes.jar"
+        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-annotations/r03/4898719420a0e946ad0772c5c2c61111999c78c2/guava-annotations-r03.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="ebcb4bbcc1552cb493750f41b7a9f8b0defbbafd">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-ade9934e3d4b7075fa1237790893c7794a64b1e8.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/smart-table-library/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d8b960c8d1a40bde493b3e34081bc774f0510a80">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-8b832eace252c16c4475de150c8a833ea0328603.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/installed/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-034ff81c932d9227189c050897a2dd86b9743f1f.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4f687e40284c98e19312d2b183a46aa23b112d69">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-ecc8e17ed1b395b7a089b7f55167f2e0465cb82e.jar" />
-    </item>
-    <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-c8a5a138c1bba4e9638c892e61a39a6d4beb60e4.jar" />
+        sha1="4898719420a0e946ad0772c5c2c61111999c78c2">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/guava-annotations-r03-dee5b649a3635a7c5fd80a8e7df3bb2a43672378.jar" />
     </item>
     <item
         jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
@@ -100,6 +23,69 @@
         <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-9daf5e6381be6c5b0d3dff31668c70eeed32941d.jar" />
     </item>
     <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4f687e40284c98e19312d2b183a46aa23b112d69">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-1d7d75b319c876521384909d50950907b83712c4.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-c8a5a138c1bba4e9638c892e61a39a6d4beb60e4.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/installed/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-034ff81c932d9227189c050897a2dd86b9743f1f.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-fc9170a3bc7d2dcd6fbfcc66e08f175337c27876.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/de.codecrafters.tableview/tableview/0.9.5/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4f687e40284c98e19312d2b183a46aa23b112d69">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-ecc8e17ed1b395b7a089b7f55167f2e0465cb82e.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.36/6bb5861f44c21c775ee713a438e5bc493c095f7a/mysql-connector-java-5.1.36.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6bb5861f44c21c775ee713a438e5bc493c095f7a">
+        <dex dex="/Users/xialeizhou/workshop/UARTLoopback/app/build/intermediates/pre-dexed/release/mysql-connector-java-5.1.36-0e38a25fa9cf09c0c27cb37731298b3074dec7f0.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-1ef4538b0d82197f65d23f670ea2c62587e432bc.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/library-1.0.19-cc485475a08d26603f43fbe572685107a093ad3d.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/smart-table-library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d8b960c8d1a40bde493b3e34081bc774f0510a80">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-8b832eace252c16c4475de150c8a833ea0328603.jar" />
+    </item>
+    <item
         jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -107,11 +93,18 @@
         <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/gson-2.4-3f01098da0bdc102019f49c3822d5be6c78c710c.jar" />
     </item>
     <item
-        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor/hellocharts-library/unspecified/jars/classes.jar"
+        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-base/r03/251db72895ba5745e6810334075095832f12f437/guava-base-r03.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="e84eb86f9b536f9d316cee061cd04fef34e0efa7">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-a3ff74611f03ad24f15710072046ba544ec62a6d.jar" />
+        sha1="251db72895ba5745e6810334075095832f12f437">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/guava-base-r03-8a8756b1800e7d061131fd57ba30d336afcd3986.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor.orig/hellocharts-library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e056d83a20b7a0916bb1e50f9f30e0cc3d45a033">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-50680d760a7b2662d129290f201eec19cc3d3478.jar" />
     </item>
     <item
         jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
@@ -121,11 +114,18 @@
         <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/classes-c8fbb3e2421442c1c54488f4b31c26997d91af88.jar" />
     </item>
     <item
-        jar="/Users/xialeizhou/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor/hellocharts-library/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor.orig/app/build/intermediates/pre-dexed/debug/library-1.0.19-cc485475a08d26603f43fbe572685107a093ad3d.jar" />
+        sha1="971d3e4c77be0650143347dc57cdbdbd11ebce84">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-a3ff74611f03ad24f15710072046ba544ec62a6d.jar" />
+    </item>
+    <item
+        jar="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/exploded-aar/Mp3_Iot_Monitor/smart-table-library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ebcb4bbcc1552cb493750f41b7a9f8b0defbbafd">
+        <dex dex="/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/build/intermediates/pre-dexed/debug/classes-ade9934e3d4b7075fa1237790893c7794a64b1e8.jar" />
     </item>
 
 </items>

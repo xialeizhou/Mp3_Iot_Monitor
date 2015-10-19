@@ -53,7 +53,8 @@ public class PointValue {
      * Set target values that should be reached when data animation finish then call {@link Chart#startDataAnimation()}
      */
     public PointValue setTarget(float targetX, float targetY) {
-        set(x, y);
+        //set(x,y); // fuck this bug!
+        set(targetX, targetY);
         this.diffX = targetX - originX;
         this.diffY = targetY - originY;
         return this;

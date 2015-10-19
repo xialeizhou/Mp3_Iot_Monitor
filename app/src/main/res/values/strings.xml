@@ -40,9 +40,9 @@
 		<item>None</item>        
 		<item>CTS/RTS</item>
 	</string-array>
-	<string name="title_outliers">Outliers Scatter</string>
+	<string name="title_outliers">Outliers Classification</string>
 	<string name="title_realtimeDisplay">Realtime Curve</string>
-	<string name="title_analysis">Analysis</string>
-	<string name="title_historySearch">History Search</string>
+	<string name="title_analysis">12 Hours in the Past</string>
+	<string name="title_historySearch">History of Latest Day</string>
 </resources>
 

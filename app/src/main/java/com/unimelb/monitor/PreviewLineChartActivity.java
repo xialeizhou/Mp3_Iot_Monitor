@@ -76,6 +76,10 @@ public class PreviewLineChartActivity extends FragmentActivity {
         private LineChartData data;
         private mp3Utils util;
 
+        private String records;
+        private double stdDev;
+        private double mean;
+
         /**
          * Deep copy of data.
          */
@@ -91,7 +95,9 @@ public class PreviewLineChartActivity extends FragmentActivity {
             chart = (LineChartView) rootView.findViewById(R.id.chart);
             previewChart = (PreviewLineChartView) rootView.findViewById(R.id.chart_preview);
             Intent intent = getActivity().getIntent();
-            String records = intent.getStringExtra("records");
+            records = intent.getStringExtra("records");
+            mean = intent.getDoubleExtra("mean", 0);
+            stdDev = intent.getDoubleExtra("stdDev", 0);
             // Generate data for previewed chart and copy of that data for preview chart.
             generateRecordData(records);
 //            generateDefaultData();
@@ -106,10 +112,8 @@ public class PreviewLineChartActivity extends FragmentActivity {
             previewChart.setViewportChangeListener(new ViewportListener());
 
             previewX(false);
-
             return rootView;
         }
-
 
         // MENU
         @Override
@@ -179,6 +183,9 @@ public class PreviewLineChartActivity extends FragmentActivity {
 
         private void generateRecordData(String jsonStr) {
             List<PointValue> values = new ArrayList<PointValue>();
+            List<PointValue> mean_values = new ArrayList<PointValue>();
+            List<PointValue> mean_add_stdDev_values = new ArrayList<PointValue>();
+            List<PointValue> mean_subtract_stdDev_values = new ArrayList<PointValue>();
             JSONArray jsonArr = null;
             Gson gson = new Gson();
             Map<Float,Float> map = new HashMap<Float,Float>();
@@ -188,27 +195,44 @@ public class PreviewLineChartActivity extends FragmentActivity {
             int secs = 0;
             while(iterator.hasNext()) {
                 Map.Entry mentry = (Map.Entry)iterator.next();
-//                float date = Float.parseFloat(String.valueOf(mentry.getKey()));
                 float value  = Float.parseFloat(String.valueOf(mentry.getValue()));
                 values.add(new PointValue(secs, value));
+                mean_values.add(new PointValue(secs, (float) mean));
+                mean_add_stdDev_values.add(new PointValue(secs, (float) (mean + stdDev)));
+                mean_subtract_stdDev_values.add(new PointValue(secs, (float)(mean - stdDev)));
                 secs += 5;
             }
             Line line = new Line(values);
             line.setColor(ChartUtils.COLOR_GREEN);
             line.setHasPoints(false);// too many values so don't draw points.
 
+            Line line_mean = new Line(mean_values);
+            line_mean.setColor(ChartUtils.COLOR_RED);
+            line_mean.setHasPoints(false);// too many values so don't draw points.
+            line_mean.setFilled(false);
+
+            Line line_mean_add_stdDev = new Line(mean_add_stdDev_values);
+            line_mean_add_stdDev.setColor(ChartUtils.COLOR_BLUE);
+            line_mean_add_stdDev.setHasPoints(false);// too many values so don't draw points.
+
+            Line line_mean_substract_stdDev = new Line(mean_subtract_stdDev_values);
+            line_mean_substract_stdDev.setColor(ChartUtils.COLOR_BLUE);
+            line_mean_substract_stdDev.setHasPoints(false);// too many values so don't draw points.
+
             List<Line> lines = new ArrayList<Line>();
             lines.add(line);
+            lines.add(line_mean);
+            lines.add(line_mean_add_stdDev);
+            lines.add(line_mean_substract_stdDev);
 
             data = new LineChartData(lines);
             data.setAxisXBottom(new Axis());
-            data.setAxisYLeft(new Axis().setHasLines(true));
+            data.setAxisYLeft(new Axis().setHasLines(false));
 
             // prepare preview data, is better to use separate deep copy for preview chart.
             // Set color to grey to make preview area more visible.
             previewData = new LineChartData(data);
             previewData.getLines().get(0).setColor(ChartUtils.DEFAULT_DARKEN_COLOR);
-
         }
 
         private void previewY() {

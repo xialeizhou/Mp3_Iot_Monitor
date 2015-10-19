@@ -7,6 +7,7 @@ package com.unimelb.monitor;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -172,7 +173,6 @@ public class BubbleChartActivity extends FragmentActivity {
 
         private void generateData(String jsonStr) {
             List<BubbleValue> values = new ArrayList<BubbleValue>();
-            JSONArray jsonArr = null;
             Gson gson = new Gson();
             Map<Float,Float> map = new HashMap<Float,Float>();
             map= (Map<Float, Float>) gson.fromJson(jsonStr, map.getClass());
@@ -185,19 +185,20 @@ public class BubbleChartActivity extends FragmentActivity {
                 int level = getLevel(value);
                 List<Float> lnglat = getLngLat(value, level);
                 BubbleValue bbval = new BubbleValue(lnglat.get(0), lnglat.get(1), (float) Math.random() * 1000);
-                bbval.setShape(shape);
-                bbval.setLabel("level:" + level + ",value:" + value + ",secs:"+String.valueOf(date));
+                bbval.setLabel("level:" + level + ",value:" + value + ",secs:" + String.valueOf(date));
                 if ( level <= 10) {
+                    bbval.setShape(ValueShape.CIRCLE);
                     bbval.setColor(ChartUtils.COLOR_GREEN); // good point
-                } else
+                } else {
+                    bbval.setShape(ValueShape.SQUARE);
                     bbval.setColor(ChartUtils.COLOR_RED); // bad point
+                }
                 values.add(bbval);
             }
-
             data = new BubbleChartData(values);
             data.setHasLabels(hasLabels);
             data.setHasLabelsOnlyForSelected(hasLabelForSelected);
-            data.setBubbleScale((float) 0.001); // scale radius
+            data.setBubbleScale((float) 0.000001); // scale radius
 
             if (hasAxes) {
 //                Axis axis_x_left = new Axis();
@@ -282,7 +283,7 @@ public class BubbleChartActivity extends FragmentActivity {
         private int getLevel(float value) {
             float absVal = Math.abs(value);
             float absMean = (float)Math.abs(meanVal);
-            if (Math.abs(absMean - absVal) <= step) {
+            if (Math.abs(absMean - absVal) < step) {
                 return 10;
             } else if (Math.abs(absMean - absVal) < step * 2) {
                 return 9;

@@ -32,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.unimelb.data.Accelerometer;
 import com.unimelb.data.Record;
 import com.unimelb.utils.Statistics;
@@ -41,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,8 @@ import java.util.regex.Pattern;
 
 import static com.unimelb.utils.mp3Utils.debugMsg;
 import static com.unimelb.utils.mp3Utils.getCurrTime;
+import static com.unimelb.utils.mp3Utils.getDateHourRelSomeDate;
+import static com.unimelb.utils.mp3Utils.getHistoryTimeRange;
 
 public class UartMonitorActivity extends Activity {
 
@@ -260,7 +264,7 @@ public class UartMonitorActivity extends Activity {
 									for(int i = 0; i < jsonArr.length(); i++) {
 										String dateStr = jsonArr.getString(i).split("#")[0];
 //										debugMsg(global_context, "dateStr:"+dateStr);
-										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										String date = dateStr.substring(dateStr.length() - 8, dateStr.length());
 										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
 										if (Math.abs(value) >= 500.0) {
 											continue;
@@ -334,33 +338,38 @@ public class UartMonitorActivity extends Activity {
 								List<Record> tlist = new ArrayList<Record>();
 								try {
 									jsonArr = new JSONArray(response.toString());
+									double[] data = new double[jsonArr.length()];
 									for(int i = 0; i < jsonArr.length(); i++) {
 										String dateStr = jsonArr.getString(i).split("#")[0];
 //										debugMsg(global_context, "dateStr:"+dateStr);
-										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										String date = dateStr.substring(dateStr.length() - 8, dateStr.length());
 										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
 										if (Math.abs(value) >= 500.0) {
 											continue;
 										}
+										data[i] = value;
 //										debugMsg(global_context, "date:"+date);
 										tlist.add(new Accelerometer(date, value));
 									}
+									Statistics stat = new Statistics(data);
+									//sort temperature records list
+									util.sortRecordsByDate(tlist);
+									Map<String,Float> rlist = new HashMap<String,Float>();
+									for(Record record: tlist) {
+										rlist.put(record.getDate(), record.getValue());
+									}
+									String jsonStr = new Gson().toJson(rlist);
+									double mean = Double.parseDouble(String.format("%.2f", stat.getMean()));
+									double stdDev = Double.parseDouble(String.format("%.2f", stat.getStdDev()));
+									// show chart
+									Intent intent = new Intent(global_context, PreviewLineChartActivity.class);
+									intent.putExtra("records", jsonStr);
+									intent.putExtra("mean", mean);
+									intent.putExtra("stdDev",stdDev);
+									startActivity(intent);
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}
-								//sort temperature records list
-								util.sortRecordsByDate(tlist);
-								Map<Float,Float> rlist = new HashMap<Float,Float>();
-								for(Record record: tlist) {
-									rlist.put(record.getDate(), record.getValue());
-								}
-								String jsonStr = new Gson().toJson(rlist);
-//								debugMsg(global_context, "date:"+tlist.get(0).getDate());
-//								debugMsg(global_context, "value:"+tlist.get(0).getValue());
-								// show chart
-								Intent intent = new Intent(global_context, PreviewLineChartActivity.class);
-								intent.putExtra("records", jsonStr);
-								startActivity(intent);
 							}
 						}, new Response.ErrorListener() {
 					@Override
@@ -378,7 +387,9 @@ public class UartMonitorActivity extends Activity {
 //				readText.setText("readTable!");
 				Map<String, String> params = new HashMap<String, String>();
 				params.clear();
-				String etime = getCurrTime();
+				String time = getHistoryTimeRange();
+				String stime = time.split(",")[0];
+				String etime = time.split(",")[1];
 				params.put("stime", stime);
 				params.put("etime", etime);
 				RequestQueue queue = Volley.newRequestQueue(global_context);
@@ -396,7 +407,8 @@ public class UartMonitorActivity extends Activity {
 									for(int i = 0; i < jsonArr.length(); i++) {
 										String dateStr = jsonArr.getString(i).split("#")[0];
 //										debugMsg(global_context, "dateStr:"+dateStr);
-										float date = Float.parseFloat(dateStr.substring(dateStr.length()-8, dateStr.length()));
+										//String date = dateStr.substring(dateStr.length()-6, dateStr.length());
+										String date = dateStr.substring(0, 10);
 										float value = Float.parseFloat(jsonArr.getString(i).split("#")[1]);
 										if (Math.abs(value) >= 500.0) {
 											continue;
@@ -409,15 +421,37 @@ public class UartMonitorActivity extends Activity {
 								}
 								//sort temperature records list
 								util.sortRecordsByDate(tlist);
-								Map<Float,Float> rlist = new HashMap<Float,Float>();
-								int secsBound = 60 * 60 * 2; // peroid = 5mins, bound = 2hours
-								int secs = 0;
-								for(Record record: tlist) {
-									if (secs > secsBound) break;
-									rlist.put(record.getDate(), record.getValue());
-									secs += 5;
+								Collections.reverse(tlist);
+								HashMap<Integer, ArrayList<Float>> colData = new HashMap<Integer, ArrayList<Float>>();
+								ArrayList<Float> subColData = new ArrayList<Float>();
+
+								String prevDate = tlist.get(0).getDate();
+								Float prevVal = tlist.get(0).getValue();
+
+								Integer colIdx = 0;
+								subColData.add(prevVal);
+								for(int i = 1; i < tlist.size(); i++) {
+									String currDate = tlist.get(i).getDate();
+									Float currVal = tlist.get(i).getValue();
+									if (prevDate.equals(currDate)) {
+										subColData.add(currVal);
+									} else {
+										colData.put(colIdx, subColData);
+										subColData = new ArrayList<Float>();
+										for(int j = 1; j < (12 - colIdx); j++) {
+											String nextHourStr = getDateHourRelSomeDate(prevDate, -j);
+											if (nextHourStr.equals(currDate)) {
+												colIdx = colIdx + j;
+												break;
+											}
+										}
+										prevDate = currDate;
+									}
 								}
-								String jsonStr = new Gson().toJson(rlist);
+								colData.put(colIdx, subColData);
+								Integer l = colData.size();
+								Gson gson = new GsonBuilder().create();
+								String jsonStr = gson.toJson(colData);
 //								debugMsg(global_context, "date:"+tlist.get(0).getDate());
 //								debugMsg(global_context, "value:"+tlist.get(0).getValue());
 								// show chart

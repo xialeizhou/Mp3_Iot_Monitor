@@ -16,12 +16,14 @@ import com.unimelb.data.RecordComparator;
 
 import java.math.BigInteger;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.DataFormatException;
 
 /**
  * Created by xialeizhou on 9/20/15.
@@ -54,6 +56,34 @@ public class mp3Utils {
     public static String getCurrTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         return df.format(new Date());
+    }
+
+    public static String getHistoryTimeRange() {
+        Date date = new Date();
+        DateFormat dfl = new SimpleDateFormat("yyyyMMddHH0000");
+        DateFormat dfr = new SimpleDateFormat("yyyyMMddHHmmss");
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.HOUR, 1);
+        String rightBound =  dfr.format(c.getTime());
+        c.setTime(date);
+        c.add(Calendar.HOUR, -10);
+        String leftBound =  dfl.format(c.getTime());
+        return leftBound + "," + rightBound;
+    }
+
+    public static String getDateHourRelSomeDate(String dateStr, int param) {
+        DateFormat df = new SimpleDateFormat("yyyyMMddHH");
+        Date date = null;
+        try {
+            date = df.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.HOUR, param);
+        return df.format(c.getTime());
     }
 
     /**
@@ -158,6 +188,7 @@ public class mp3Utils {
         return url + "/" + params.get("stime") + "/" + params.get("etime");
     }
 
+
     /**
      * @param url
      * @param params
@@ -184,11 +215,7 @@ public class mp3Utils {
 
     public static void main(String [] args) {
         mp3Utils util = new mp3Utils();
-        System.out.println(getCurrTime());
-        System.out.println(getDateTimeRelCurrTime(-1));
-        System.out.println(getDateTimeRelCurrTime(-2));
-        System.out.println(getDateTimeRelCurrTime(1));
-        System.out.println(getDateTimeRelCurrTime(3));
+        System.out.println(getDateHourRelSomeDate("2015101900", -1));
         // query acc
     }
 
