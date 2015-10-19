@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<resources>    
-	<usb-accessory model="FTDIUARTDemo" manufacturer="FTDI" version="1.0"/>
-	<usb-accessory model="Android Accessory FT312D" manufacturer="FTDI" version="1.0"/>
-</resources><!-- From: file:/Users/xialeizhou/workshop/Mp3_Iot_Monitor/app/src/main/res/xml/accessory_filter.xml -->
